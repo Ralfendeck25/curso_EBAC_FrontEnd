@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ArialSans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+			flex-direction: column;
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			display: flex;
+			align-items: center;
+			height: 100vh;
+        }
+
+		.container {
+			background-color: #fff;
+			border-radius: 8px;
+			padding: 20px;
+			margin-top: 20px;
+			box-shadow: 4px 10px #000;
+			width: 300px;
+		}
+
+		h1 {
+			text-align: center;
+			align-items: center;
+			font-size: 24px;
+			margin-bottom: 20px;
+			margin-top: 20px;
+		}
+
+		form {
+            flex-direction: column;
+			margin-top: 40px;
+			display: flex;
+		}
+
+		label {
+			font-size: 16px;
+	        margin-bottom: 8px;
+		}
+
+        input {
+			font-size: 16px;
+			padding: 8px;
+			margin-bottom: 10px;
+		    border-radius: 5px;
+        }
+
+		input[type='number'],
+        input[type='text'] {
+            font-size: 16px;
+			padding: 8px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+            color: #333;
+			width: 100%;
+			resize: none;
+		}
+
+		input[type='submit'] {
+            text-transform: uppercase;
+			background-color: #4CAF50;
+			color: white;
+			font-size: 18px;
+			font-weight: bold;
+			font-style: italic;
+			cursor: pointer;
+			border: none;
+		}
+
+		input [type='submit']:hover {
+			background-color: #1f8324;
+		}
+
+		input [type='submit']:disabled {
+			background-color: #ccc;
+			cursor: not-allowed;
+		}
+
+        button {
+			background-color: #4CAF50;
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			font-style: italic;
+			cursor: pointer;
+			padding: 10px;
+			border: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+		}
+
+		button:hover {
+			background-color: #08750e;
+		}
+
+		textarea {font-size: 16px;
+			padding: 8px;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			resize: none;
+		}
+        
+		.alert-message {
+			display: none;
+			background-color: rgb(252, 3, 3);
+			font-size: 12px;
+			margin-bottom: 8px;
+			color: #f4f0f0;
+        }
+        
+        .alert-message.valid {
+			background-color: #1aef4b;
+            color: #26803b;
+        }
+        .alert-message.invalid {
+            background-color: rgb(252, 3, 3);
+            color: #de061c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario</h1>
+    <div class="container">
+        <div class="form-box">
+        <form onsubmit="return validateForm()">
+            <label for="campoA">Campo A:</label>
+				<input type="number" id="campo-a" required />
+            
+            <br>
+            <label for="campoB">Campo B:</label>
+				<input type="number" id="campo-b" required />
+            <br>
+            <button type="submit">Submeter</button>
+        </form>
+			<p class="alert" id="alert-message"></p>
+		</div>
+    </div>
+    <script>
+        function validateForm() {
+            const campoA = parseFloat(document.getElementById('campo-a').value);
+            const campoB = parseFloat(document.getElementById('campo-b').value);
+            const alertMessage = document.getElementById('alert-message');
+            if (campoB > campoA) {
+				alertMessage.classList.add('valid');
+				alertMessage.classList.remove('invalid');
+                alertMessage.textContent = 'Formulario valido! O número do campo B é maior que do campo A.';
+				alertMessage.style.display = 'block';
+                return true;
+            } else {
+				alertMessage.classList.add('invalid');
+				alertMessage.classList.remove('valid');
+                alertMessage.textContent = 'Formulario invalido! O número do campo B é menor que do campo A.';
+				alertMessage.style.display = 'block';
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
